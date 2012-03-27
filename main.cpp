@@ -12,7 +12,8 @@ struct cell{
 
 typedef struct cell Cell;
 
-
+#define alpha 50.f
+#define beta 1.f
 
 /*void oldShiftDownAndNeighbors(Cell** grid, int x, int y, int stepSize, int maxDepth){
 //	if(grid[x][y].visited == true){
@@ -108,72 +109,46 @@ void drawGrid(sf::RenderWindow& App, Cell** pfGrid, int pfDim){
 	getAttractors(pfGrid, pfDim, attractors);
 	getRepulsors(pfGrid, pfDim, repulsors);
 	
-	App.SetActive();
-	
-	//glClear(GL_COLOR_BUFFER_BIT);
-	App.Clear(sf::Color(255,255,255,255));
-	
 	for(int x = 0; x < pfDim; x++){
 		for(int y = 0; y < pfDim; y++){
-			
 			if(pfGrid[x][y].attraction != 0){
 				pfGrid[x][y].cell.SetScale(0.001, 1.f);
 				pfGrid[x][y].cell.SetRotation(0.f);
 			}
 			else{
-//				float val = pfGrid[x][y].attraction / 10.f;
-//				pfGrid[x][y].cell.SetScale(val, 1.f);
-				pfGrid[x][y].cell.SetScale(0.5, 1.f);
-				
-				float angle = 90.f;
+				float angle = 0.f;
 				float magnitude = 0.f;
+				float maxMag = 0;
 				
-				float alpha = 50.f; //scale everything, this is the cutoff factor
-				float maxAttractionFactor = 10.f;
+				sf::Vector2f direction(0,0);
 				
+				//loop through attractors and set the attraction vectors
 				for(attrIt = attractors.begin(); attrIt < attractors.end(); attrIt++){
-					float radians = atan(((*attrIt)->cell.GetPosition().y - pfGrid[x][y].cell.GetPosition().y) / ((*attrIt)->cell.GetPosition().x - pfGrid[x][y].cell.GetPosition().x));
-					float degrees = radians * (180.f / 3.14f);
-					
-					degrees = 90 - degrees;
-					
-					if(pfGrid[x][y].cell.GetPosition().x < (*attrIt)->cell.GetPosition().x)
-						degrees -= 180;
-					else if(pfGrid[x][y].cell.GetPosition().x == (*attrIt)->cell.GetPosition().x)
-						degrees -= 180;
-					
-					angle += degrees;
-					
-					
 					float distance = sqrt(
 										  ((*attrIt)->cell.GetPosition().x - pfGrid[x][y].cell.GetPosition().x) * ((*attrIt)->cell.GetPosition().x - pfGrid[x][y].cell.GetPosition().x) + 
 										  ((*attrIt)->cell.GetPosition().y - pfGrid[x][y].cell.GetPosition().y) * ((*attrIt)->cell.GetPosition().y - pfGrid[x][y].cell.GetPosition().y)
 										  );
-				//	magnitude += distance;
-				//	if(magnitude == 0)
-				//		magnitude = distance; //if this is the first attractor to be tested, then don't average anything
-				//	else
-				//		magnitude = (magnitude + distance) / 2.f; //average the magnitudes
 					
-					float scaleX = ((alpha * (*attrIt)->attraction) - distance) / (alpha * (*attrIt)->attraction);
-					if(scaleX <= 0 || distance == 0.f)
-						magnitude += 0;
-					else
-						magnitude += scaleX;
+					if(distance == 0)
+						continue;
+					
+					maxMag += 500.f;
+					
+					float radians = atan2(((*attrIt)->cell.GetPosition().y - pfGrid[x][y].cell.GetPosition().y), ((*attrIt)->cell.GetPosition().x - pfGrid[x][y].cell.GetPosition().x));
+					radians = (3.14 / 2.f) + radians;
+					
+					float factor = 0.01;
+					float distFact = factor * distance;
+					if(distance > (*attrIt)->attraction * alpha)
+						distFact = (*attrIt)->attraction * alpha * factor;
+					
+					sf::Vector2f v = sf::Vector2f(distFact * cos(radians), distFact * sin(radians));
+					
+					direction = sf::Vector2f(direction.x + v.x, direction.y + v.y);
 				}
 				
-				for(attrIt = repulsors.begin(); attrIt < repulsors.end(); attrIt++){
-					float radians = atan(((*attrIt)->cell.GetPosition().y - pfGrid[x][y].cell.GetPosition().y) / ((*attrIt)->cell.GetPosition().x - pfGrid[x][y].cell.GetPosition().x));
-					float degrees = radians * (180.f / 3.14f);
-					
-					
-					degrees = 90 - degrees;
-					
-					if(pfGrid[x][y].cell.GetPosition().x > (*attrIt)->cell.GetPosition().x)
-						degrees -= 180;
-					
-					angle += degrees;
-					
+				//loop through repulsors and set the repulsion vectors
+				/*for(attrIt = repulsors.begin(); attrIt < repulsors.end(); attrIt++){
 					float distance = sqrt(
 										  ((*attrIt)->cell.GetPosition().x - pfGrid[x][y].cell.GetPosition().x) * ((*attrIt)->cell.GetPosition().x - pfGrid[x][y].cell.GetPosition().x) + 
 										  ((*attrIt)->cell.GetPosition().y - pfGrid[x][y].cell.GetPosition().y) * ((*attrIt)->cell.GetPosition().y - pfGrid[x][y].cell.GetPosition().y)
@@ -183,33 +158,107 @@ void drawGrid(sf::RenderWindow& App, Cell** pfGrid, int pfDim){
 					float scaleX = (attractionFactor - distance) / attractionFactor;
 					if(scaleX <= 0 || distance == 0.f)
 						magnitude += 0;
-					else
+					else{
 						magnitude += scaleX;
+						
+						float radians = atan2(((*attrIt)->cell.GetPosition().y - pfGrid[x][y].cell.GetPosition().y), ((*attrIt)->cell.GetPosition().x - pfGrid[x][y].cell.GetPosition().x));
+						float degrees = radians * (180.f / 3.14f);
+						
+						
+						degrees = 90 - degrees;
+						
+						//if(pfGrid[x][y].cell.GetPosition().x > (*attrIt)->cell.GetPosition().x)
+						//	degrees -= 180;
+						
+						angle += degrees;
+					}
 					
+				}
+				*/
+				
+				angle = atan2(direction.x, direction.y) * 180.f/3.14f;
+				magnitude = sqrt(direction.x*direction.x + direction.y*direction.y);
+				if(magnitude != 0.f){
+					if(magnitude < 0)
+						magnitude = 0;
+				}
+				else{
+					magnitude = 0.f;
 				}
 				
 				pfGrid[x][y].cell.SetRotation(angle);
 				
 				pfGrid[x][y].cell.SetScale(magnitude + 0.0001, 1.f);
 			}
-//			sf::Color cellColor =  sf::Color(val, val, val, 255);
-//			pfGrid[x][y].cell.SetPointColor(0, cellColor);
-//			pfGrid[x][y].cell.SetPointColor(1, cellColor);
-//			pfGrid[x][y].cell.SetPointColor(2, cellColor);
-//			pfGrid[x][y].cell.SetPointColor(3, cellColor);
 			App.Draw(pfGrid[x][y].cell);
 		}
 	}
+}
+
+void step(Cell** grid, int dim, sf::Sprite& guy){
+	sf::Vector2f pos = guy.GetPosition();
+	
+	std::vector<Cell*> attractors;
+	std::vector<Cell*> repulsors;
+	std::vector<Cell*>::iterator attrIt;
+	
+	getAttractors(grid, dim, attractors);
+	getRepulsors(grid, dim, repulsors);
+	
+	sf::Vector2f direction(0,0);
+	
+	float angle = 0.f;
+	float magnitude = 0.f;
+	float maxMag = 0;
+	
+	//loop through attractors and set the attraction vectors
+	for(attrIt = attractors.begin(); attrIt < attractors.end(); attrIt++){
+		float distance = sqrt(
+							  ((*attrIt)->cell.GetPosition().x - pos.x) * ((*attrIt)->cell.GetPosition().x - pos.x) + 
+							  ((*attrIt)->cell.GetPosition().y - pos.y) * ((*attrIt)->cell.GetPosition().y - pos.y)
+							  );
+		
+		if(distance == 0)
+			continue;
+		
+		maxMag += 500.f;
+		
+		float radians = atan2(((*attrIt)->cell.GetPosition().y - pos.y), ((*attrIt)->cell.GetPosition().x - pos.x));
+		radians = (3.14 / 2.f) + radians;
+		
+		float factor = 0.01;
+		float distFact = factor * distance;
+		if(distance > (*attrIt)->attraction * alpha)
+			distFact = (*attrIt)->attraction * alpha * factor;
+		
+		sf::Vector2f v = sf::Vector2f(distFact * cos(radians), distFact * sin(radians));
+		
+		direction = sf::Vector2f(direction.x + v.x, direction.y + v.y);
+	}
 	
 	
-	App.Display();
+	angle = atan2(direction.x, direction.y);
+	magnitude = sqrt(direction.x*direction.x + direction.y*direction.y);
+	if(magnitude != 0.f){
+		if(magnitude < 0)
+			magnitude = 0;
+	}
+	else{
+		magnitude = 0.f;
+	}
 	
+	float deltaX = alpha * magnitude * cos(angle);
+	float deltaY = -alpha * magnitude * sin(angle);
+	
+	printf("x = %f, y = %f\n", deltaX, deltaY);
+	
+	guy.SetPosition(pos.x + deltaX, pos.y + deltaY);
 }
 
 int main(int argc, char* argv[])
 {
 	sf::Image arrowImg;
-	arrowImg.LoadFromFile("arrow.jpg");
+	arrowImg.LoadFromFile("arrow.png");
 	arrowImg.SetSmooth(false);
 	
 	const int pfDim = 20;
@@ -231,24 +280,19 @@ int main(int argc, char* argv[])
 			pfGrid[x][y].visited = false;
 			pfGrid[x][y].cell = sf::Sprite(arrowImg, sf::Vector2f(xPos, yPos), sf::Vector2f(0, 1), 0.f);
 			pfGrid[x][y].cell.SetCenter(16,16);
-//			pfGrid[x][y].cell.SetRotation(45);
 		}
 	}
-	
-	/*
-	int j = 30;
-	for(int i = 20; i < 50; i++){
-		shiftDownAndNeighbors(pfGrid, j, i, 5, 5);
-		clearVisitation(pfGrid, pfDim);
-		j+=2;
-	}*/
-	
 	
 	sf::RenderWindow App(sf::VideoMode(cellSize*pfDim, cellSize*pfDim, 32), "Potential Field Visualizer");
 	
 	App.SetFramerateLimit(15);
 	
 	drawGrid(App, pfGrid, pfDim);
+	
+	sf::Image guyImg;
+	guyImg.LoadFromFile("guy.png");
+	
+	sf::Sprite guy(guyImg, sf::Vector2f(App.GetWidth() / 2.f, App.GetHeight() - 50), sf::Vector2f(1,1), 0.f);
 	
     // Start game loop
     while (App.IsOpened())
@@ -275,9 +319,23 @@ int main(int argc, char* argv[])
             // Resize event : adjust viewport
             if (Event.Type == sf::Event::Resized)
                 glViewport(0, 0, Event.Size.Width, Event.Size.Height);
+			
+			if(Event.Type == sf::Event::KeyPressed){
+				if(Event.Key.Code == sf::Key::Space){
+					step(pfGrid, pfDim, guy);
+				}
+			}
         }
 		
+		
+		App.SetActive();
+		App.Clear(sf::Color(255,255,255,255));
+		
 		drawGrid(App, pfGrid, pfDim);
+		
+		App.Draw(guy);
+		
+		App.Display();
     }
 	
 	delete[] pfGrid;

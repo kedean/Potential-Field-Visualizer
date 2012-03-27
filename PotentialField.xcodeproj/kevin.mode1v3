@@ -273,7 +273,9 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>15</integer>
+									<integer>2</integer>
+									<integer>1</integer>
+									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
@@ -326,10 +328,10 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>0A0FC14F15222C5000D65C08</string>
+										<string>0A0FC36615226F1F00D65C08</string>
 										<key>history</key>
 										<array>
-											<string>0A364B7D152139E600835D77</string>
+											<string>0A0FC20115224F0200D65C08</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -527,7 +529,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>0A0FC15015222C5000D65C08</string>
+		<string>0A0FC36715226F1F00D65C08</string>
 		<string>0A0FBFEC152139FF00D65C08</string>
 		<string>0A0FBFED152139FF00D65C08</string>
 		<string>1CD10A99069EF8BA00B06720</string>
@@ -557,7 +559,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string></string>
+								<string>main.cpp</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -574,6 +576,8 @@
 							<string>218pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -626,7 +630,7 @@
 			<key>WindowToolGUID</key>
 			<string>0A1A6DE1151D11A6005F454D</string>
 			<key>WindowToolIsVisible</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>

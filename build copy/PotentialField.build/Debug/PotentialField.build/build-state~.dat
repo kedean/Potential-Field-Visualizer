@@ -1,171 +1,18 @@
 TPotentialField
 v7
 r0
-t354578294.482385
+t354225956.067606
 cCheck dependencies
 cProcessInfoPlistFile /Users/kevin/Programs/PotentialField/build/Debug/PotentialField.app/Contents/Info.plist Info.plist
-cCpResource build/Debug/PotentialField.app/Contents/Resources/guy.png guy.png
-cCpResource build/Debug/PotentialField.app/Contents/Resources/arrow.png arrow.png
 cCompileC build/PotentialField.build/Debug/PotentialField.build/Objects-normal/i386/main.o /Users/kevin/Programs/PotentialField/main.cpp normal i386 c++ com.apple.compilers.gcc.4_2
-cLd /Users/kevin/Programs/PotentialField/build/Debug/PotentialField.app/Contents/MacOS/PotentialField normal i386
 cPBXCp build/Debug/PotentialField.app/Contents/Frameworks/sfml-system.framework /Library/Frameworks/sfml-system.framework
 cPBXCp build/Debug/PotentialField.app/Contents/Frameworks/sfml-window.framework /Library/Frameworks/sfml-window.framework
-cTouch /Users/kevin/Programs/PotentialField/build/Debug/PotentialField.app
 
 N/Library/Frameworks/SFML.framework/Headers/Config.hpp
 c000000004BBA05180000000000001274
 t1270482200
 s4724
 i<climits>
-
-N/Library/Frameworks/SFML.framework/Headers/Graphics.hpp
-c000000004BBA051800000000000006DA
-t1270482200
-s1754
-i<SFML/Window.hpp>
-i<SFML/Graphics/Color.hpp>
-i<SFML/Graphics/Font.hpp>
-i<SFML/Graphics/Glyph.hpp>
-i<SFML/Graphics/Image.hpp>
-i<SFML/Graphics/PostFX.hpp>
-i<SFML/Graphics/RenderWindow.hpp>
-i<SFML/Graphics/Shape.hpp>
-i<SFML/Graphics/Sprite.hpp>
-i<SFML/Graphics/String.hpp>
-i<SFML/Graphics/View.hpp>
-
-N/Library/Frameworks/SFML.framework/Headers/Graphics/Color.hpp
-c000000004BBA05180000000000001537
-t1270482200
-s5431
-i<SFML/Config.hpp>
-
-N/Library/Frameworks/SFML.framework/Headers/Graphics/Drawable.hpp
-c000000004BBA051800000000000035BC
-t1270482200
-s13756
-i<SFML/System/Vector2.hpp>
-i<SFML/Graphics/Color.hpp>
-i<SFML/Graphics/Matrix3.hpp>
-
-N/Library/Frameworks/SFML.framework/Headers/Graphics/Font.hpp
-c000000004BBA05180000000000001636
-t1270482200
-s5686
-i<SFML/System/Resource.hpp>
-i<SFML/System/Vector2.hpp>
-i<SFML/System/Unicode.hpp>
-i<SFML/Graphics/Glyph.hpp>
-i<SFML/Graphics/Image.hpp>
-i<SFML/Graphics/Rect.hpp>
-i<map>
-i<string>
-
-N/Library/Frameworks/SFML.framework/Headers/Graphics/Glyph.hpp
-c000000004BBA051800000000000008EB
-t1270482200
-s2283
-i<SFML/Config.hpp>
-i<SFML/Graphics/Rect.hpp>
-
-N/Library/Frameworks/SFML.framework/Headers/Graphics/Image.hpp
-c000000004BBA0518000000000000347F
-t1270482200
-s13439
-i<SFML/System/Resource.hpp>
-i<SFML/Graphics/Color.hpp>
-i<SFML/Graphics/Rect.hpp>
-i<string>
-i<vector>
-
-N/Library/Frameworks/SFML.framework/Headers/Graphics/Matrix3.hpp
-c000000004BBA05180000000000001553
-t1270482200
-s5459
-i<SFML/Config.hpp>
-i<SFML/System/Vector2.hpp>
-i<math.h>
-i<SFML/Graphics/Matrix3.inl>
-
-N/Library/Frameworks/SFML.framework/Headers/Graphics/Matrix3.inl
-c000000004BBA05180000000000001F9A
-t1270482200
-s8090
-
-N/Library/Frameworks/SFML.framework/Headers/Graphics/PostFX.hpp
-c000000004BBA05180000000000001BF6
-t1270482200
-s7158
-i<SFML/Graphics/Drawable.hpp>
-i<SFML/Graphics/Image.hpp>
-i<istream>
-i<map>
-i<string>
-
-N/Library/Frameworks/SFML.framework/Headers/Graphics/Rect.hpp
-c000000004BBA05180000000000001241
-t1270482200
-s4673
-i<algorithm>
-i<SFML/Graphics/Rect.inl>
-
-N/Library/Frameworks/SFML.framework/Headers/Graphics/Rect.inl
-c000000004BBA05180000000000000F07
-t1270482200
-s3847
-
-N/Library/Frameworks/SFML.framework/Headers/Graphics/RenderTarget.hpp
-c000000004BBA0518000000000000184F
-t1270482200
-s6223
-i<SFML/Graphics/Color.hpp>
-i<SFML/Graphics/View.hpp>
-i<SFML/Graphics/Rect.hpp>
-
-N/Library/Frameworks/SFML.framework/Headers/Graphics/RenderWindow.hpp
-c000000004BBA051800000000000014AD
-t1270482200
-s5293
-i<SFML/Graphics/Image.hpp>
-i<SFML/Graphics/RenderTarget.hpp>
-i<SFML/Window/Window.hpp>
-i<string>
-
-N/Library/Frameworks/SFML.framework/Headers/Graphics/Shape.hpp
-c000000004BBA051800000000000034E6
-t1270482200
-s13542
-i<SFML/Graphics/Drawable.hpp>
-i<SFML/System/Vector2.hpp>
-i<vector>
-
-N/Library/Frameworks/SFML.framework/Headers/Graphics/Sprite.hpp
-c000000004BBA05180000000000001A4A
-t1270482200
-s6730
-i<SFML/System/Resource.hpp>
-i<SFML/Graphics/Drawable.hpp>
-i<SFML/Graphics/Rect.hpp>
-
-N/Library/Frameworks/SFML.framework/Headers/Graphics/String.hpp
-c000000004BBA05180000000000001C60
-t1270482200
-s7264
-i<SFML/System/Resource.hpp>
-i<SFML/System/Unicode.hpp>
-i<SFML/Graphics/Drawable.hpp>
-i<SFML/Graphics/Font.hpp>
-i<SFML/Graphics/Rect.hpp>
-i<string>
-
-N/Library/Frameworks/SFML.framework/Headers/Graphics/View.hpp
-c000000004BBA05180000000000001BDB
-t1270482200
-s7131
-i<SFML/Config.hpp>
-i<SFML/Graphics/Rect.hpp>
-i<SFML/Graphics/Matrix3.hpp>
-i<SFML/System/Vector2.hpp>
 
 N/Library/Frameworks/SFML.framework/Headers/System.hpp
 c000000004BBA0518000000000000069F
@@ -213,24 +60,6 @@ c000000004BBA05180000000000000D0C
 t1270482200
 s3340
 i<SFML/Config.hpp>
-
-N/Library/Frameworks/SFML.framework/Headers/System/Resource.hpp
-c000000004BBA05180000000000001D40
-t1270482200
-s7488
-i<set>
-i<SFML/System/Resource.inl>
-i<SFML/System/ResourcePtr.inl>
-
-N/Library/Frameworks/SFML.framework/Headers/System/Resource.inl
-c000000004BBA05180000000000000B74
-t1270482200
-s2932
-
-N/Library/Frameworks/SFML.framework/Headers/System/ResourcePtr.inl
-c000000004BBA05180000000000001193
-t1270482200
-s4499
 
 N/Library/Frameworks/SFML.framework/Headers/System/Sleep.hpp
 c000000004BBA051800000000000006C5
@@ -392,11 +221,6 @@ c000000004BBA05180000000000000768
 t1270482200
 s1896
 
-N/Library/Frameworks/sfml-graphics.framework/sfml-graphics
-c000000004BBA051800000000004FCC40
-t1270482200
-s5229632
-
 N/Library/Frameworks/sfml-system.framework
 c000000004BBA051800000000000000AA
 t1270482200
@@ -432,19 +256,9 @@ c000000004EDEBFD00000000000043360
 t1323220944
 s275296
 
-N/Users/kevin/Programs/PotentialField/arrow.jpg
-c000000004F71013500000000000003E2
-t1332805941
-s994
-
-N/Users/kevin/Programs/PotentialField/arrow.png
-c000000004F71F98C00000000000000FD
-t1332869516
-s253
-
 N/Users/kevin/Programs/PotentialField/build/Debug/PotentialField.app
-t1332885405
-s102
+t2
+s0
 
 N/Users/kevin/Programs/PotentialField/build/Debug/PotentialField.app/Contents/Frameworks/sfml-system.framework
 t1332533155
@@ -459,24 +273,12 @@ t1332533155
 s618
 
 N/Users/kevin/Programs/PotentialField/build/Debug/PotentialField.app/Contents/MacOS/PotentialField
-t1332885405
-s62424
+t2
+s0
 
 N/Users/kevin/Programs/PotentialField/build/Debug/PotentialField.app/Contents/PkgInfo
 t1332533155
 s8
-
-N/Users/kevin/Programs/PotentialField/build/Debug/PotentialField.app/Contents/Resources/arrow.jpg
-t1332805943
-s994
-
-N/Users/kevin/Programs/PotentialField/build/Debug/PotentialField.app/Contents/Resources/arrow.png
-t1332869532
-s253
-
-N/Users/kevin/Programs/PotentialField/build/Debug/PotentialField.app/Contents/Resources/guy.png
-t1332868850
-s1707
 
 N/Users/kevin/Programs/PotentialField/build/PotentialField.build/Debug/PotentialField.build/Objects-normal/i386/PotentialField.LinkFileList
 c000000004F6CD7A30000000000000076
@@ -484,26 +286,14 @@ t1332533155
 s118
 
 N/Users/kevin/Programs/PotentialField/build/PotentialField.build/Debug/PotentialField.build/Objects-normal/i386/main.o
-t1332885405
-s204276
-
-N/Users/kevin/Programs/PotentialField/guy.png
-c000000004F71F6F000000000000006AB
-t1332868848
-s1707
+t2
+s0
 
 N/Users/kevin/Programs/PotentialField/main.cpp
-c000000004F72379D00000000000025F9
-t1332885405
-s9721
+c000000004F6CD7A200000000000005BA
+t1332533154
+s1466
 i<SFML/Window.hpp>
-i<SFML/Graphics.hpp>
-i<vector>
-
-N/usr/include/math.h
-c000000004A5C14A000000000000004F1
-t1247548576
-s1265
 
 N/usr/include/pthread.h
 c000000004BBD2CE900000000000038F0
@@ -522,12 +312,12 @@ s634
 
 CCheck dependencies
 r0
-lSLF07#2@18"Check dependencies354578294#354578294#0(0"0(0#1#0"8615282528#0"0#
+lSLF07#2@18"Check dependencies354225955#354225955#0(0"0(0#1#0"29836824280170608#0"0#
 
 CCompileC build/PotentialField.build/Debug/PotentialField.build/Objects-normal/i386/main.o /Users/kevin/Programs/PotentialField/main.cpp normal i386 c++ com.apple.compilers.gcc.4_2
-s354578205.236534
-e354578205.847103
-r1
+s354225955.430266
+e354225955.899626
+r0
 xCompileC
 xbuild/PotentialField.build/Debug/PotentialField.build/Objects-normal/i386/main.o
 x/Users/kevin/Programs/PotentialField/main.cpp
@@ -535,44 +325,15 @@ xnormal
 xi386
 xc++
 xcom.apple.compilers.gcc.4_2
-lSLF07#2@53"Compile /Users/kevin/Programs/PotentialField/main.cpp354578205#354578205#0(0"0(0#0#45"/Users/kevin/Programs/PotentialField/main.cpp8615917408#1290"    cd /Users/kevin/Programs/PotentialField    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c++ -arch i386 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -mfix-and-continue -fvisibility-inlines-hidden -gdwarf-2 -iquote /Users/kevin/Programs/PotentialField/build/PotentialField.build/Debug/PotentialField.build/PotentialField-generated-files.hmap -I/Users/kevin/Programs/PotentialField/build/PotentialField.build/Debug/PotentialField.build/PotentialField-own-target-headers.hmap -I/Users/kevin/Programs/PotentialField/build/PotentialField.build/Debug/PotentialField.build/PotentialField-all-target-headers.hmap -iquote /Users/kevin/Programs/PotentialField/build/PotentialField.build/Debug/PotentialField.build/PotentialField-project-headers.hmap -F/Users/kevin/Programs/PotentialField/build/Debug -I/Users/kevin/Programs/PotentialField/build/Debug/include -I/Users/kevin/Programs/PotentialField/build/PotentialField.build/Debug/PotentialField.build/DerivedSources/i386 -I/Users/kevin/Programs/PotentialField/build/PotentialField.build/Debug/PotentialField.build/DerivedSources -c /Users/kevin/Programs/PotentialField/main.cpp -o /Users/kevin/Programs/PotentialField/build/PotentialField.build/Debug/PotentialField.build/Objects-normal/i386/main.o0#
-
-CCpResource build/Debug/PotentialField.app/Contents/Resources/arrow.jpg arrow.jpg
-s354498743.366371
-e354498743.386979
-r1
-xCpResource
-xbuild/Debug/PotentialField.app/Contents/Resources/arrow.jpg
-xarrow.jpg
-lSLF07#2@14"Copy arrow.jpg354498743#354498743#0(0"0(0#0#46"/Users/kevin/Programs/PotentialField/arrow.jpg8608703936#340"    cd /Users/kevin/Programs/PotentialField    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/kevin/Programs/PotentialField/arrow.jpg /Users/kevin/Programs/PotentialField/build/Debug/PotentialField.app/Contents/Resources0#
-
-CCpResource build/Debug/PotentialField.app/Contents/Resources/arrow.png arrow.png
-s354562332.783923
-e354562332.792256
-r1
-xCpResource
-xbuild/Debug/PotentialField.app/Contents/Resources/arrow.png
-xarrow.png
-lSLF07#2@14"Copy arrow.png354562332#354562332#0(0"0(0#0#46"/Users/kevin/Programs/PotentialField/arrow.png8613912352#340"    cd /Users/kevin/Programs/PotentialField    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/kevin/Programs/PotentialField/arrow.png /Users/kevin/Programs/PotentialField/build/Debug/PotentialField.app/Contents/Resources0#
-
-CCpResource build/Debug/PotentialField.app/Contents/Resources/guy.png guy.png
-s354561650.344673
-e354561650.351126
-r1
-xCpResource
-xbuild/Debug/PotentialField.app/Contents/Resources/guy.png
-xguy.png
-lSLF07#2@12"Copy guy.png354561650#354561650#0(0"0(0#0#44"/Users/kevin/Programs/PotentialField/guy.png8613309216#338"    cd /Users/kevin/Programs/PotentialField    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/kevin/Programs/PotentialField/guy.png /Users/kevin/Programs/PotentialField/build/Debug/PotentialField.app/Contents/Resources0#
+o/Users/kevin/Programs/PotentialField/main.cpp: In function 'int main()':
+o/Users/kevin/Programs/PotentialField/main.cpp:47: error: 'Shape' is not a member of 'sf'
+o/Users/kevin/Programs/PotentialField/main.cpp:47: error: expected `;' before 'cell'
+o/Users/kevin/Programs/PotentialField/main.cpp:48: error: 'class sf::Window' has no member named 'Draw'
+o/Users/kevin/Programs/PotentialField/main.cpp:48: error: 'cell' was not declared in this scope
+lSLF07#2@53"Compile /Users/kevin/Programs/PotentialField/main.cpp354225955#354225955#0(444"/Users/kevin/Programs/PotentialField/main.cpp: In function 'int main()':/Users/kevin/Programs/PotentialField/main.cpp:47: error: 'Shape' is not a member of 'sf'/Users/kevin/Programs/PotentialField/main.cpp:47: error: expected `;' before 'cell'/Users/kevin/Programs/PotentialField/main.cpp:48: error: 'class sf::Window' has no member named 'Draw'/Users/kevin/Programs/PotentialField/main.cpp:48: error: 'cell' was not declared in this scope4(4@31"'Shape' is not a member of 'sf'354225955#73#89#0(6@45"/Users/kevin/Programs/PotentialField/main.cpp354225954#47#0#47#0#0"0(4@26"Expected `;' before 'cell'354225955#162#84#0(6@45"/Users/kevin/Programs/PotentialField/main.cpp354225954#47#0#47#0#19"expected * before *0(4@45"'class sf::Window' has no member named 'Draw'354225955#246#103#0(6@45"/Users/kevin/Programs/PotentialField/main.cpp354225954#48#0#48#0#27"'*' has no member named '*'0(4@37"'cell' was not declared in this scope354225955#349#95#0(6@45"/Users/kevin/Programs/PotentialField/main.cpp354225954#48#0#48#0#34"'*' was not declared in this scope0(0#0#45"/Users/kevin/Programs/PotentialField/main.cpp8618211936#1290"    cd /Users/kevin/Programs/PotentialField    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c++ -arch i386 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -mfix-and-continue -fvisibility-inlines-hidden -gdwarf-2 -iquote /Users/kevin/Programs/PotentialField/build/PotentialField.build/Debug/PotentialField.build/PotentialField-generated-files.hmap -I/Users/kevin/Programs/PotentialField/build/PotentialField.build/Debug/PotentialField.build/PotentialField-own-target-headers.hmap -I/Users/kevin/Programs/PotentialField/build/PotentialField.build/Debug/PotentialField.build/PotentialField-all-target-headers.hmap -iquote /Users/kevin/Programs/PotentialField/build/PotentialField.build/Debug/PotentialField.build/PotentialField-project-headers.hmap -F/Users/kevin/Programs/PotentialField/build/Debug -I/Users/kevin/Programs/PotentialField/build/Debug/include -I/Users/kevin/Programs/PotentialField/build/PotentialField.build/Debug/PotentialField.build/DerivedSources/i386 -I/Users/kevin/Programs/PotentialField/build/PotentialField.build/Debug/PotentialField.build/DerivedSources -c /Users/kevin/Programs/PotentialField/main.cpp -o /Users/kevin/Programs/PotentialField/build/PotentialField.build/Debug/PotentialField.build/Objects-normal/i386/main.o1#
 
 CLd /Users/kevin/Programs/PotentialField/build/Debug/PotentialField.app/Contents/MacOS/PotentialField normal i386
-s354578205.847178
-e354578205.877302
-r1
-xLd
-x/Users/kevin/Programs/PotentialField/build/Debug/PotentialField.app/Contents/MacOS/PotentialField
-xnormal
-xi386
-lSLF07#2@102"Link /Users/kevin/Programs/PotentialField/build/Debug/PotentialField.app/Contents/MacOS/PotentialField354578205#354578205#0(0"0(0#0#0"8617041472#527"    cd /Users/kevin/Programs/PotentialField    /Developer/usr/bin/g++-4.2 -arch i386 -L/Users/kevin/Programs/PotentialField/build/Debug -F/Users/kevin/Programs/PotentialField/build/Debug -filelist /Users/kevin/Programs/PotentialField/build/PotentialField.build/Debug/PotentialField.build/Objects-normal/i386/PotentialField.LinkFileList -framework sfml-system -framework sfml-window -framework OpenGL -framework sfml-graphics -o /Users/kevin/Programs/PotentialField/build/Debug/PotentialField.app/Contents/MacOS/PotentialField0#
+r0
 
 CPBXCp build/Debug/PotentialField.app/Contents/Frameworks/sfml-system.framework /Library/Frameworks/sfml-system.framework
 s354225955.899710
@@ -602,10 +363,5 @@ xInfo.plist
 lSLF07#2@18"Process Info.plist354225955#354225955#0(0"0(0#0#47"/Users/kevin/Programs/PotentialField/Info.plist32651569751457908#310"    cd /Users/kevin/Programs/PotentialField    builtin-infoPlistUtility Info.plist -genpkginfo /Users/kevin/Programs/PotentialField/build/Debug/PotentialField.app/Contents/PkgInfo -expandbuildsettings -platform macosx -o /Users/kevin/Programs/PotentialField/build/Debug/PotentialField.app/Contents/Info.plist0#
 
 CTouch /Users/kevin/Programs/PotentialField/build/Debug/PotentialField.app
-s354578205.877548
-e354578205.880166
-r1
-xTouch
-x/Users/kevin/Programs/PotentialField/build/Debug/PotentialField.app
-lSLF07#2@73"Touch /Users/kevin/Programs/PotentialField/build/Debug/PotentialField.app354578205#354578205#0(0"0(0#0#0"8616785280#134"    cd /Users/kevin/Programs/PotentialField    /usr/bin/touch -c /Users/kevin/Programs/PotentialField/build/Debug/PotentialField.app0#
+r0
 
