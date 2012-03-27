@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0A0FC15215222DD600D65C08 /* guy.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A0FC15115222DD600D65C08 /* guy.png */; };
 		0A0FC16E1522311400D65C08 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A0FC16D1522311400D65C08 /* arrow.png */; };
+		0A0FC43F15227F8100D65C08 /* SFML.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = A01FB78A0F07D338000AAC7B /* SFML.framework */; };
+		0A0FC44015227F8100D65C08 /* sfml-graphics.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 0A1A6DB8151D0F9D005F454D /* sfml-graphics.framework */; };
 		0A1A6DB9151D0F9D005F454D /* sfml-graphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A1A6DB8151D0F9D005F454D /* sfml-graphics.framework */; };
 		A0072B1B0F1D0FCD00B4A594 /* sfml-system.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = A01FB7880F07D338000AAC7B /* sfml-system.framework */; };
 		A0072B1C0F1D0FCD00B4A594 /* sfml-window.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = A01FB7890F07D338000AAC7B /* sfml-window.framework */; };
@@ -25,8 +27,10 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				0A0FC43F15227F8100D65C08 /* SFML.framework in Copy Frameworks */,
 				A0072B1B0F1D0FCD00B4A594 /* sfml-system.framework in Copy Frameworks */,
 				A0072B1C0F1D0FCD00B4A594 /* sfml-window.framework in Copy Frameworks */,
+				0A0FC44015227F8100D65C08 /* sfml-graphics.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
