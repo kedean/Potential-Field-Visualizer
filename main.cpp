@@ -126,6 +126,10 @@ void drawGrid(sf::RenderWindow& App, Cell** pfGrid, int pfDim){
 				pfGrid[x][y].cell.SetScale(0.5, 1.f);
 				
 				float angle = 90.f;
+				float magnitude = 0.f;
+				
+				float alpha = 50.f; //scale everything, this is the cutoff factor
+				float maxAttractionFactor = 10.f;
 				
 				for(attrIt = attractors.begin(); attrIt < attractors.end(); attrIt++){
 					float radians = atan(((*attrIt)->cell.GetPosition().y - pfGrid[x][y].cell.GetPosition().y) / ((*attrIt)->cell.GetPosition().x - pfGrid[x][y].cell.GetPosition().x));
@@ -139,6 +143,23 @@ void drawGrid(sf::RenderWindow& App, Cell** pfGrid, int pfDim){
 						degrees -= 180;
 					
 					angle += degrees;
+					
+					
+					float distance = sqrt(
+										  ((*attrIt)->cell.GetPosition().x - pfGrid[x][y].cell.GetPosition().x) * ((*attrIt)->cell.GetPosition().x - pfGrid[x][y].cell.GetPosition().x) + 
+										  ((*attrIt)->cell.GetPosition().y - pfGrid[x][y].cell.GetPosition().y) * ((*attrIt)->cell.GetPosition().y - pfGrid[x][y].cell.GetPosition().y)
+										  );
+				//	magnitude += distance;
+				//	if(magnitude == 0)
+				//		magnitude = distance; //if this is the first attractor to be tested, then don't average anything
+				//	else
+				//		magnitude = (magnitude + distance) / 2.f; //average the magnitudes
+					
+					float scaleX = ((alpha * (*attrIt)->attraction) - distance) / (alpha * (*attrIt)->attraction);
+					if(scaleX <= 0 || distance == 0.f)
+						magnitude += 0;
+					else
+						magnitude += scaleX;
 				}
 				
 				for(attrIt = repulsors.begin(); attrIt < repulsors.end(); attrIt++){
@@ -152,9 +173,24 @@ void drawGrid(sf::RenderWindow& App, Cell** pfGrid, int pfDim){
 						degrees -= 180;
 					
 					angle += degrees;
+					
+					float distance = sqrt(
+										  ((*attrIt)->cell.GetPosition().x - pfGrid[x][y].cell.GetPosition().x) * ((*attrIt)->cell.GetPosition().x - pfGrid[x][y].cell.GetPosition().x) + 
+										  ((*attrIt)->cell.GetPosition().y - pfGrid[x][y].cell.GetPosition().y) * ((*attrIt)->cell.GetPosition().y - pfGrid[x][y].cell.GetPosition().y)
+										  );
+					
+					float attractionFactor = alpha * abs((*attrIt)->attraction);
+					float scaleX = (attractionFactor - distance) / attractionFactor;
+					if(scaleX <= 0 || distance == 0.f)
+						magnitude += 0;
+					else
+						magnitude += scaleX;
+					
 				}
 				
 				pfGrid[x][y].cell.SetRotation(angle);
+				
+				pfGrid[x][y].cell.SetScale(magnitude + 0.0001, 1.f);
 			}
 //			sf::Color cellColor =  sf::Color(val, val, val, 255);
 //			pfGrid[x][y].cell.SetPointColor(0, cellColor);
@@ -210,12 +246,9 @@ int main(int argc, char* argv[])
 	
 	sf::RenderWindow App(sf::VideoMode(cellSize*pfDim, cellSize*pfDim, 32), "Potential Field Visualizer");
 	
-	App.SetFramerateLimit(30);
+	App.SetFramerateLimit(15);
 	
 	drawGrid(App, pfGrid, pfDim);
-	
-	float elapsedSinceLastDraw = 0.f;
-	sf::Clock clock;
 	
     // Start game loop
     while (App.IsOpened())
@@ -233,36 +266,10 @@ int main(int argc, char* argv[])
                 App.Close();
 			
 			if(Event.Type == sf::Event::MouseButtonPressed){
-				int cellX = Event.MouseButton.X / cellSize;
-				int cellY = Event.MouseButton.Y / cellSize;
+				int cellX = (Event.MouseButton.X) / cellSize;
+				int cellY = (Event.MouseButton.Y) / cellSize;
 				
-				if(Event.MouseButton.Button == 0){ //left click, increase at this spot
-					/*pfGrid[cellX][cellY] -= shiftAmount;
-					if(pfGrid[cellX][cellY] < -127){
-						pfGrid[cellX][cellY] = -127;
-						
-					}*/
-					
-				//	shiftDownAndNeighbors(pfGrid, cellX, cellY, shiftAmount, pfGrid[cellX][cellY].attraction/shiftAmount);
-				//	clearVisitation(pfGrid, pfDim);
-					
-					pfGrid[cellX][cellY].attraction += 1;
-				}
-				
-				else if(Event.MouseButton.Button == 1){ //right click, decrease at this spot
-					/*pfGrid[cellX][cellY] += shiftAmount;
-					if(pfGrid[cellX][cellY] > 127)
-						pfGrid[cellX][cellY] = 127;*/
-					
-				//	shiftDownAndNeighbors(pfGrid, cellX, cellY, -shiftAmount, abs(pfGrid[cellX][cellY].attraction/shiftAmount));
-				//	clearVisitation(pfGrid, pfDim);
-					
-					pfGrid[cellX][cellY].attraction -= 1;
-				}
-				
-				
-				
-				/*printf("Val = %ld\n", pfGrid[cellX][cellY]);*/
+				pfGrid[cellX][cellY].attraction += (Event.MouseButton.Button == 0) ? 1 : -1;
 			}
 			
             // Resize event : adjust viewport
@@ -270,12 +277,7 @@ int main(int argc, char* argv[])
                 glViewport(0, 0, Event.Size.Width, Event.Size.Height);
         }
 		
-		elapsedSinceLastDraw += clock.GetElapsedTime();
-		
-		if(elapsedSinceLastDraw >= 1.f/10.f){
-			drawGrid(App, pfGrid, pfDim);
-			elapsedSinceLastDraw = 0.f;
-		}
+		drawGrid(App, pfGrid, pfDim);
     }
 	
 	delete[] pfGrid;
