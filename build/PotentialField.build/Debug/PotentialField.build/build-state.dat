@@ -1,7 +1,7 @@
 TPotentialField
 v7
 r0
-t354578592.221389
+t354582285.651274
 cCheck dependencies
 cProcessInfoPlistFile /Users/kevin/Programs/PotentialField/build/Debug/PotentialField.app/Contents/Info.plist Info.plist
 cCpResource build/Debug/PotentialField.app/Contents/Resources/guy.png guy.png
@@ -443,7 +443,7 @@ t1332869516
 s253
 
 N/Users/kevin/Programs/PotentialField/build/Debug/PotentialField.app
-t1332885754
+t1332889485
 s102
 
 N/Users/kevin/Programs/PotentialField/build/Debug/PotentialField.app/Contents/Frameworks/sfml-system.framework
@@ -459,8 +459,8 @@ t1332533155
 s618
 
 N/Users/kevin/Programs/PotentialField/build/Debug/PotentialField.app/Contents/MacOS/PotentialField
-t1332885754
-s62424
+t1332889485
+s62592
 
 N/Users/kevin/Programs/PotentialField/build/Debug/PotentialField.app/Contents/PkgInfo
 t1332533155
@@ -484,8 +484,8 @@ t1332533155
 s118
 
 N/Users/kevin/Programs/PotentialField/build/PotentialField.build/Debug/PotentialField.build/Objects-normal/i386/main.o
-t1332885754
-s204292
+t1332889485
+s204224
 
 N/Users/kevin/Programs/PotentialField/guy.png
 c000000004F71F6F000000000000006AB
@@ -493,9 +493,9 @@ t1332868848
 s1707
 
 N/Users/kevin/Programs/PotentialField/main.cpp
-c000000004F7238F900000000000025F6
-t1332885753
-s9718
+c000000004F72478C0000000000002339
+t1332889484
+s9017
 i<SFML/Window.hpp>
 i<SFML/Graphics.hpp>
 i<vector>
@@ -522,11 +522,11 @@ s634
 
 CCheck dependencies
 r0
-lSLF07#2@18"Check dependencies354578592#354578592#0(0"0(0#1#0"8602048416#0"0#
+lSLF07#2@18"Check dependencies354582284#354582284#0(0"0(0#1#0"8620543200#0"0#
 
 CCompileC build/PotentialField.build/Debug/PotentialField.build/Objects-normal/i386/main.o /Users/kevin/Programs/PotentialField/main.cpp normal i386 c++ com.apple.compilers.gcc.4_2
-s354578553.744575
-e354578554.288767
+s354582284.869233
+e354582285.617178
 r1
 xCompileC
 xbuild/PotentialField.build/Debug/PotentialField.build/Objects-normal/i386/main.o
@@ -535,7 +535,7 @@ xnormal
 xi386
 xc++
 xcom.apple.compilers.gcc.4_2
-lSLF07#2@53"Compile /Users/kevin/Programs/PotentialField/main.cpp354578553#354578554#0(0"0(0#0#45"/Users/kevin/Programs/PotentialField/main.cpp8615652608#1290"    cd /Users/kevin/Programs/PotentialField    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c++ -arch i386 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -mfix-and-continue -fvisibility-inlines-hidden -gdwarf-2 -iquote /Users/kevin/Programs/PotentialField/build/PotentialField.build/Debug/PotentialField.build/PotentialField-generated-files.hmap -I/Users/kevin/Programs/PotentialField/build/PotentialField.build/Debug/PotentialField.build/PotentialField-own-target-headers.hmap -I/Users/kevin/Programs/PotentialField/build/PotentialField.build/Debug/PotentialField.build/PotentialField-all-target-headers.hmap -iquote /Users/kevin/Programs/PotentialField/build/PotentialField.build/Debug/PotentialField.build/PotentialField-project-headers.hmap -F/Users/kevin/Programs/PotentialField/build/Debug -I/Users/kevin/Programs/PotentialField/build/Debug/include -I/Users/kevin/Programs/PotentialField/build/PotentialField.build/Debug/PotentialField.build/DerivedSources/i386 -I/Users/kevin/Programs/PotentialField/build/PotentialField.build/Debug/PotentialField.build/DerivedSources -c /Users/kevin/Programs/PotentialField/main.cpp -o /Users/kevin/Programs/PotentialField/build/PotentialField.build/Debug/PotentialField.build/Objects-normal/i386/main.o0#
+lSLF07#2@53"Compile /Users/kevin/Programs/PotentialField/main.cpp354582284#354582285#0(0"0(0#0#45"/Users/kevin/Programs/PotentialField/main.cpp8616887360#1290"    cd /Users/kevin/Programs/PotentialField    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c++ -arch i386 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -mfix-and-continue -fvisibility-inlines-hidden -gdwarf-2 -iquote /Users/kevin/Programs/PotentialField/build/PotentialField.build/Debug/PotentialField.build/PotentialField-generated-files.hmap -I/Users/kevin/Programs/PotentialField/build/PotentialField.build/Debug/PotentialField.build/PotentialField-own-target-headers.hmap -I/Users/kevin/Programs/PotentialField/build/PotentialField.build/Debug/PotentialField.build/PotentialField-all-target-headers.hmap -iquote /Users/kevin/Programs/PotentialField/build/PotentialField.build/Debug/PotentialField.build/PotentialField-project-headers.hmap -F/Users/kevin/Programs/PotentialField/build/Debug -I/Users/kevin/Programs/PotentialField/build/Debug/include -I/Users/kevin/Programs/PotentialField/build/PotentialField.build/Debug/PotentialField.build/DerivedSources/i386 -I/Users/kevin/Programs/PotentialField/build/PotentialField.build/Debug/PotentialField.build/DerivedSources -c /Users/kevin/Programs/PotentialField/main.cpp -o /Users/kevin/Programs/PotentialField/build/PotentialField.build/Debug/PotentialField.build/Objects-normal/i386/main.o0#
 
 CCpResource build/Debug/PotentialField.app/Contents/Resources/arrow.jpg arrow.jpg
 s354498743.366371
@@ -565,14 +565,14 @@ xguy.png
 lSLF07#2@12"Copy guy.png354561650#354561650#0(0"0(0#0#44"/Users/kevin/Programs/PotentialField/guy.png8613309216#338"    cd /Users/kevin/Programs/PotentialField    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/kevin/Programs/PotentialField/guy.png /Users/kevin/Programs/PotentialField/build/Debug/PotentialField.app/Contents/Resources0#
 
 CLd /Users/kevin/Programs/PotentialField/build/Debug/PotentialField.app/Contents/MacOS/PotentialField normal i386
-s354578554.288839
-e354578554.318904
+s354582285.617292
+e354582285.647912
 r1
 xLd
 x/Users/kevin/Programs/PotentialField/build/Debug/PotentialField.app/Contents/MacOS/PotentialField
 xnormal
 xi386
-lSLF07#2@102"Link /Users/kevin/Programs/PotentialField/build/Debug/PotentialField.app/Contents/MacOS/PotentialField354578554#354578554#0(0"0(0#0#0"8616267776#527"    cd /Users/kevin/Programs/PotentialField    /Developer/usr/bin/g++-4.2 -arch i386 -L/Users/kevin/Programs/PotentialField/build/Debug -F/Users/kevin/Programs/PotentialField/build/Debug -filelist /Users/kevin/Programs/PotentialField/build/PotentialField.build/Debug/PotentialField.build/Objects-normal/i386/PotentialField.LinkFileList -framework sfml-system -framework sfml-window -framework OpenGL -framework sfml-graphics -o /Users/kevin/Programs/PotentialField/build/Debug/PotentialField.app/Contents/MacOS/PotentialField0#
+lSLF07#2@102"Link /Users/kevin/Programs/PotentialField/build/Debug/PotentialField.app/Contents/MacOS/PotentialField354582285#354582285#0(0"0(0#0#0"8613471040#527"    cd /Users/kevin/Programs/PotentialField    /Developer/usr/bin/g++-4.2 -arch i386 -L/Users/kevin/Programs/PotentialField/build/Debug -F/Users/kevin/Programs/PotentialField/build/Debug -filelist /Users/kevin/Programs/PotentialField/build/PotentialField.build/Debug/PotentialField.build/Objects-normal/i386/PotentialField.LinkFileList -framework sfml-system -framework sfml-window -framework OpenGL -framework sfml-graphics -o /Users/kevin/Programs/PotentialField/build/Debug/PotentialField.app/Contents/MacOS/PotentialField0#
 
 CPBXCp build/Debug/PotentialField.app/Contents/Frameworks/sfml-system.framework /Library/Frameworks/sfml-system.framework
 s354225955.899710
@@ -602,10 +602,10 @@ xInfo.plist
 lSLF07#2@18"Process Info.plist354225955#354225955#0(0"0(0#0#47"/Users/kevin/Programs/PotentialField/Info.plist32651569751457908#310"    cd /Users/kevin/Programs/PotentialField    builtin-infoPlistUtility Info.plist -genpkginfo /Users/kevin/Programs/PotentialField/build/Debug/PotentialField.app/Contents/PkgInfo -expandbuildsettings -platform macosx -o /Users/kevin/Programs/PotentialField/build/Debug/PotentialField.app/Contents/Info.plist0#
 
 CTouch /Users/kevin/Programs/PotentialField/build/Debug/PotentialField.app
-s354578554.319127
-e354578554.321843
+s354582285.648133
+e354582285.651237
 r1
 xTouch
 x/Users/kevin/Programs/PotentialField/build/Debug/PotentialField.app
-lSLF07#2@73"Touch /Users/kevin/Programs/PotentialField/build/Debug/PotentialField.app354578554#354578554#0(0"0(0#0#0"8615825632#134"    cd /Users/kevin/Programs/PotentialField    /usr/bin/touch -c /Users/kevin/Programs/PotentialField/build/Debug/PotentialField.app0#
+lSLF07#2@73"Touch /Users/kevin/Programs/PotentialField/build/Debug/PotentialField.app354582285#354582285#0(0"0(0#0#0"8603514464#134"    cd /Users/kevin/Programs/PotentialField    /usr/bin/touch -c /Users/kevin/Programs/PotentialField/build/Debug/PotentialField.app0#
 
