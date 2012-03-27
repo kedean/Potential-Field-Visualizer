@@ -13,7 +13,7 @@ struct cell{
 typedef struct cell Cell;
 
 #define alpha 50.f
-#define beta 1.f
+#define beta 10.f
 
 /*void oldShiftDownAndNeighbors(Cell** grid, int x, int y, int stepSize, int maxDepth){
 //	if(grid[x][y].visited == true){
@@ -139,8 +139,8 @@ void drawGrid(sf::RenderWindow& App, Cell** pfGrid, int pfDim){
 					
 					float factor = 0.01;
 					float distFact = factor * distance;
-					if(distance > (*attrIt)->attraction * alpha)
-						distFact = (*attrIt)->attraction * alpha * factor;
+					if(distance > (*attrIt)->attraction * beta)
+						distFact = (*attrIt)->attraction * beta * factor;
 					
 					sf::Vector2f v = sf::Vector2f(distFact * cos(radians), distFact * sin(radians));
 					
@@ -228,8 +228,8 @@ void step(Cell** grid, int dim, sf::Sprite& guy){
 		
 		float factor = 0.01;
 		float distFact = factor * distance;
-		if(distance > (*attrIt)->attraction * alpha)
-			distFact = (*attrIt)->attraction * alpha * factor;
+		if(distance > (*attrIt)->attraction * beta)
+			distFact = (*attrIt)->attraction * beta * factor;
 		
 		sf::Vector2f v = sf::Vector2f(distFact * cos(radians), distFact * sin(radians));
 		
