@@ -7,7 +7,7 @@ struct cell{
 	int x, y;
 	int attraction;
 	bool visited;
-	sf::Shape cell;
+	sf::Sprite cell;
 };
 
 typedef struct cell Cell;
@@ -53,14 +53,14 @@ void shiftDownAndNeighbors(Cell** grid, int x, int y, int stepSize, int maxDepth
 		for(std::vector<Cell*>::iterator it = workingset.begin(); it < workingset.end(); it++){
 			if((*it)->visited == false){
 				(*it)->attraction += stepSize;
-				if((*it)->attraction > 127)
-					(*it)->attraction = 127;
-				else if((*it)->attraction < -127)
-					(*it)->attraction = -127;
+				if((*it)->attraction > 10)
+					(*it)->attraction = 10;
+				else if((*it)->attraction < -10)
+					(*it)->attraction = -10;
 				(*it)->visited = true;
-				if((*it)->x < 99)
+				if((*it)->x < 9)
 					siblings.push_back(&grid[(*it)->x + 1][(*it)->y]);
-				if((*it)->y < 99)
+				if((*it)->y < 9)
 					siblings.push_back(&grid[(*it)->x][(*it)->y + 1]);
 				if((*it)->x > 0)
 					siblings.push_back(&grid[(*it)->x - 1][(*it)->y]);
@@ -82,21 +82,85 @@ void clearVisitation(Cell** grid, int dim){
 	}
 }
 
+void getAttractors(Cell** source, int dim, std::vector<Cell*>& destination){
+	for(int x = 0; x < dim; x++){
+		for(int y = 0; y < dim; y++){
+			if(source[x][y].attraction > 0)
+				destination.push_back(&source[x][y]);
+		}
+	}
+}
+void getRepulsors(Cell** source, int dim, std::vector<Cell*>& destination){
+	for(int x = 0; x < dim; x++){
+		for(int y = 0; y < dim; y++){
+			if(source[x][y].attraction < 0)
+				destination.push_back(&source[x][y]);
+		}
+	}
+}
+
 void drawGrid(sf::RenderWindow& App, Cell** pfGrid, int pfDim){
+	
+	std::vector<Cell*> attractors;
+	std::vector<Cell*> repulsors;
+	std::vector<Cell*>::iterator attrIt;
+	
+	getAttractors(pfGrid, pfDim, attractors);
+	getRepulsors(pfGrid, pfDim, repulsors);
 	
 	App.SetActive();
 	
-	glClear(GL_COLOR_BUFFER_BIT);
-	
+	//glClear(GL_COLOR_BUFFER_BIT);
+	App.Clear(sf::Color(255,255,255,255));
 	
 	for(int x = 0; x < pfDim; x++){
 		for(int y = 0; y < pfDim; y++){
-			int val = pfGrid[x][y].attraction + 127;
-			sf::Color cellColor =  sf::Color(val, val, val, 255);
-			pfGrid[x][y].cell.SetPointColor(0, cellColor);
-			pfGrid[x][y].cell.SetPointColor(1, cellColor);
-			pfGrid[x][y].cell.SetPointColor(2, cellColor);
-			pfGrid[x][y].cell.SetPointColor(3, cellColor);
+			
+			if(pfGrid[x][y].attraction != 0){
+				pfGrid[x][y].cell.SetScale(0.001, 1.f);
+				pfGrid[x][y].cell.SetRotation(0.f);
+			}
+			else{
+//				float val = pfGrid[x][y].attraction / 10.f;
+//				pfGrid[x][y].cell.SetScale(val, 1.f);
+				pfGrid[x][y].cell.SetScale(0.5, 1.f);
+				
+				float angle = 90.f;
+				
+				for(attrIt = attractors.begin(); attrIt < attractors.end(); attrIt++){
+					float radians = atan(((*attrIt)->cell.GetPosition().y - pfGrid[x][y].cell.GetPosition().y) / ((*attrIt)->cell.GetPosition().x - pfGrid[x][y].cell.GetPosition().x));
+					float degrees = radians * (180.f / 3.14f);
+					
+					degrees = 90 - degrees;
+					
+					if(pfGrid[x][y].cell.GetPosition().x < (*attrIt)->cell.GetPosition().x)
+						degrees -= 180;
+					else if(pfGrid[x][y].cell.GetPosition().x == (*attrIt)->cell.GetPosition().x)
+						degrees -= 180;
+					
+					angle += degrees;
+				}
+				
+				for(attrIt = repulsors.begin(); attrIt < repulsors.end(); attrIt++){
+					float radians = atan(((*attrIt)->cell.GetPosition().y - pfGrid[x][y].cell.GetPosition().y) / ((*attrIt)->cell.GetPosition().x - pfGrid[x][y].cell.GetPosition().x));
+					float degrees = radians * (180.f / 3.14f);
+					
+					
+					degrees = 90 - degrees;
+					
+					if(pfGrid[x][y].cell.GetPosition().x > (*attrIt)->cell.GetPosition().x)
+						degrees -= 180;
+					
+					angle += degrees;
+				}
+				
+				pfGrid[x][y].cell.SetRotation(angle);
+			}
+//			sf::Color cellColor =  sf::Color(val, val, val, 255);
+//			pfGrid[x][y].cell.SetPointColor(0, cellColor);
+//			pfGrid[x][y].cell.SetPointColor(1, cellColor);
+//			pfGrid[x][y].cell.SetPointColor(2, cellColor);
+//			pfGrid[x][y].cell.SetPointColor(3, cellColor);
 			App.Draw(pfGrid[x][y].cell);
 		}
 	}
@@ -108,24 +172,30 @@ void drawGrid(sf::RenderWindow& App, Cell** pfGrid, int pfDim){
 
 int main(int argc, char* argv[])
 {
-	const int pfDim = 100;
+	sf::Image arrowImg;
+	arrowImg.LoadFromFile("arrow.jpg");
+	arrowImg.SetSmooth(false);
 	
-	float cellSize = 10;
-	long shiftAmount = 5;
+	const int pfDim = 20;
+	
+	float cellSize = 32;
+	long shiftAmount = 1;
 	
 	Cell** pfGrid = new Cell*[pfDim];
 	
 	for(int x = 0; x < pfDim; x++){
 		pfGrid[x] = new Cell[pfDim];
 		for(int y = 0; y < pfDim; y++){
-			float xPos = x*cellSize;
-			float yPos = y*cellSize;
+			float xPos = x*cellSize + 16;
+			float yPos = y*cellSize + 16;
 			
 			pfGrid[x][y].x = x;
 			pfGrid[x][y].y = y;
 			pfGrid[x][y].attraction = 0;
 			pfGrid[x][y].visited = false;
-			pfGrid[x][y].cell = sf::Shape::Rectangle(xPos, yPos, xPos+cellSize, yPos+cellSize, sf::Color(0, 0, 0, 255));
+			pfGrid[x][y].cell = sf::Sprite(arrowImg, sf::Vector2f(xPos, yPos), sf::Vector2f(0, 1), 0.f);
+			pfGrid[x][y].cell.SetCenter(16,16);
+//			pfGrid[x][y].cell.SetRotation(45);
 		}
 	}
 	
@@ -173,8 +243,10 @@ int main(int argc, char* argv[])
 						
 					}*/
 					
-					shiftDownAndNeighbors(pfGrid, cellX, cellY, shiftAmount, pfGrid[cellX][cellY].attraction/shiftAmount);
-					clearVisitation(pfGrid, pfDim);
+				//	shiftDownAndNeighbors(pfGrid, cellX, cellY, shiftAmount, pfGrid[cellX][cellY].attraction/shiftAmount);
+				//	clearVisitation(pfGrid, pfDim);
+					
+					pfGrid[cellX][cellY].attraction += 1;
 				}
 				
 				else if(Event.MouseButton.Button == 1){ //right click, decrease at this spot
@@ -182,8 +254,10 @@ int main(int argc, char* argv[])
 					if(pfGrid[cellX][cellY] > 127)
 						pfGrid[cellX][cellY] = 127;*/
 					
-					shiftDownAndNeighbors(pfGrid, cellX, cellY, -shiftAmount, abs(pfGrid[cellX][cellY].attraction/shiftAmount));
-					clearVisitation(pfGrid, pfDim);
+				//	shiftDownAndNeighbors(pfGrid, cellX, cellY, -shiftAmount, abs(pfGrid[cellX][cellY].attraction/shiftAmount));
+				//	clearVisitation(pfGrid, pfDim);
+					
+					pfGrid[cellX][cellY].attraction -= 1;
 				}
 				
 				

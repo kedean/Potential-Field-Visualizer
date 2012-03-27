@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0A1A6DB9151D0F9D005F454D /* sfml-graphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A1A6DB8151D0F9D005F454D /* sfml-graphics.framework */; };
+		0A364B241521380500835D77 /* arrow.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0A364B231521380500835D77 /* arrow.jpg */; };
 		A0072B1B0F1D0FCD00B4A594 /* sfml-system.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = A01FB7880F07D338000AAC7B /* sfml-system.framework */; };
 		A0072B1C0F1D0FCD00B4A594 /* sfml-window.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = A01FB7890F07D338000AAC7B /* sfml-window.framework */; };
 		A01FB7870F07D328000AAC7B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A01FB7860F07D328000AAC7B /* main.cpp */; };
@@ -33,6 +34,7 @@
 
 /* Begin PBXFileReference section */
 		0A1A6DB8151D0F9D005F454D /* sfml-graphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "sfml-graphics.framework"; path = "/Library/Frameworks/sfml-graphics.framework"; sourceTree = "<absolute>"; };
+		0A364B231521380500835D77 /* arrow.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = arrow.jpg; sourceTree = "<group>"; };
 		A01FB77A0F07D2C5000AAC7B /* PotentialField.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PotentialField.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A01FB77D0F07D2C5000AAC7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A01FB7860F07D328000AAC7B /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 		A01FB7820F07D309000AAC7B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0A364B231521380500835D77 /* arrow.jpg */,
 				A01FB77D0F07D2C5000AAC7B /* Info.plist */,
 			);
 			name = Resources;
@@ -154,6 +157,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A364B241521380500835D77 /* arrow.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
