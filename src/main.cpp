@@ -15,30 +15,36 @@ typedef struct cell Cell;
 
 #define alpha 25.f
 #define beta 100.f
-#define cellSize 32
+#define cellSize 16
+#define pfDim 40
 
 
-void getAttractors(Cell** source, int dim, std::vector<Cell*>& destination){
-	for(int x = 0; x < dim; x++){
-		for(int y = 0; y < dim; y++){
+void getAttractors(Cell** source, std::vector<Cell*>& destination){
+	for(int x = 0; x < pfDim; x++){
+		for(int y = 0; y < pfDim; y++){
 			if(source[x][y].attraction > 0)
 				destination.push_back(&source[x][y]);
 		}
 	}
 }
-void getRepulsors(Cell** source, int dim, std::vector<Cell*>& destination){
-	for(int x = 0; x < dim; x++){
-		for(int y = 0; y < dim; y++){
+void getRepulsors(Cell** source, std::vector<Cell*>& destination){
+	for(int x = 0; x < pfDim; x++){
+		for(int y = 0; y < pfDim; y++){
 			if(source[x][y].attraction < 0)
 				destination.push_back(&source[x][y]);
 		}
 	}
 }
 
-sf::Vector2f getDetectors(Cell** pfGrid, int pfDim, sf::Vector2f position, std::vector<Cell*> attractorsAndRepulsors){
+float initAngles[20][20];
+
+sf::Vector2f getDetectors(Cell** pfGrid, sf::Vector2f position, std::vector<Cell*> attractorsAndRepulsors){
 	std::vector<Cell*>::iterator attrIt;
 	
-	sf::Vector2f direction(0,0);
+	int xPos = position.x / cellSize;
+	int yPos = position.y / cellSize;
+	
+	sf::Vector2f direction(1.f * cos(initAngles[xPos][yPos]), 1.f * sin(initAngles[xPos][yPos]));
 	//loop through attractors and repulsors and set the attraction vectors
 	for(attrIt = attractorsAndRepulsors.begin(); attrIt < attractorsAndRepulsors.end(); attrIt++){
 		float distance = sqrt(
@@ -65,9 +71,6 @@ sf::Vector2f getDetectors(Cell** pfGrid, int pfDim, sf::Vector2f position, std::
 			else{
 				distFact = distFact / ((*attrIt)->attraction * beta * factor);
 			}
-			
-			
-			//
 		}
 		else{
 			if(distance > abs((*attrIt)->attraction * beta)){
@@ -87,11 +90,11 @@ sf::Vector2f getDetectors(Cell** pfGrid, int pfDim, sf::Vector2f position, std::
 	return direction;
 }
 
-void drawGrid(sf::RenderWindow& App, Cell** pfGrid, int pfDim){
+void drawGrid(sf::RenderWindow& App, Cell** pfGrid){
 	
 	std::vector<Cell*> attractorsAndRepulsors;
-	getAttractors(pfGrid, pfDim, attractorsAndRepulsors);
-	getRepulsors(pfGrid, pfDim, attractorsAndRepulsors);
+	getAttractors(pfGrid, attractorsAndRepulsors);
+	getRepulsors(pfGrid, attractorsAndRepulsors);
 	
 	for(int x = 0; x < pfDim; x++){
 		for(int y = 0; y < pfDim; y++){
@@ -100,7 +103,7 @@ void drawGrid(sf::RenderWindow& App, Cell** pfGrid, int pfDim){
 				pfGrid[x][y].cell.SetRotation(0.f);
 			}
 			else{
-				pfGrid[x][y].direction = getDetectors(pfGrid, pfDim, pfGrid[x][y].cell.GetPosition(), attractorsAndRepulsors);
+				pfGrid[x][y].direction = getDetectors(pfGrid, pfGrid[x][y].cell.GetPosition(), attractorsAndRepulsors);
 				
 				float angle = 0.f;
 				float magnitude = 0.f;
@@ -117,16 +120,20 @@ void drawGrid(sf::RenderWindow& App, Cell** pfGrid, int pfDim){
 	}
 }
 
-void step(Cell** grid, int dim, sf::Sprite& guy){
+void step(Cell** grid, sf::Sprite& guy){
 	sf::Vector2f pos = guy.GetPosition();
+	int xPos = pos.x / cellSize;
+	int yPos = pos.y / cellSize;
+	
+	grid[xPos][yPos].attraction = 0.f;
 	
 	std::vector<Cell*> attractorsAndRepulsors;
 	std::vector<Cell*>::iterator attrIt;
 	
-	getAttractors(grid, dim, attractorsAndRepulsors);
-	getRepulsors(grid, dim, attractorsAndRepulsors);
+	getAttractors(grid, attractorsAndRepulsors);
+	getRepulsors(grid, attractorsAndRepulsors);
 	
-	sf::Vector2f direction = getDetectors(grid, dim, pos, attractorsAndRepulsors);
+	sf::Vector2f direction = getDetectors(grid, pos, attractorsAndRepulsors);
 	
 	float angle = atan2(direction.x, direction.y);
 	float magnitude = sqrt(direction.x*direction.x + direction.y*direction.y);
@@ -151,10 +158,14 @@ void step(Cell** grid, int dim, sf::Sprite& guy){
 //		guy.SetPosition(grid[
 }
 
-void resetGrid(Cell** pfGrid, int pfDim, sf::Image& withImg){
+void resetGrid(sf::RenderWindow& App, Cell** pfGrid, sf::Image& withImg, sf::Sprite& sprite){
+	sprite.SetPosition(sf::Vector2f(App.GetWidth() / 2.f, App.GetHeight() - 100));
 	for(int x = 0; x < pfDim; x++){
 		pfGrid[x] = new Cell[pfDim];
 		for(int y = 0; y < pfDim; y++){
+			initAngles[x][y] = (x > 4 ? -45 : 45);
+			
+			
 			float xPos = x*cellSize + cellSize/2;
 			float yPos = y*cellSize + cellSize/2;
 			
@@ -170,28 +181,28 @@ void resetGrid(Cell** pfGrid, int pfDim, sf::Image& withImg){
 
 int main(int argc, char* argv[])
 {
-	sf::Image arrowImg;
-	arrowImg.LoadFromFile("arrow.png");
-	arrowImg.SetSmooth(false);
-	
-	const int pfDim = 20;
 	
 	long shiftAmount = 1;
-	
-	Cell** pfGrid = new Cell*[pfDim];
-	
-	resetGrid(pfGrid, pfDim, arrowImg);
 	
 	sf::RenderWindow App(sf::VideoMode(cellSize*pfDim, cellSize*pfDim, 32), "Potential Field Visualizer");
 	
 	App.SetFramerateLimit(15);
+	
+	sf::Image arrowImg;
+	arrowImg.LoadFromFile("arrow.png");
+	arrowImg.SetSmooth(false);
+	
+	Cell** pfGrid = new Cell*[pfDim];
 	
 	sf::Image guyImg;
 	guyImg.LoadFromFile("guy.png");
 	
 	sf::Sprite guy(guyImg, sf::Vector2f(App.GetWidth() / 2.f, App.GetHeight() - 200), sf::Vector2f(1,1), 0.f);
 	
-    // Start game loop
+	resetGrid(App, pfGrid, arrowImg, guy);
+	
+	
+	// Start game loop
     while (App.IsOpened())
     {
         // Process events
@@ -219,10 +230,10 @@ int main(int argc, char* argv[])
 			
 			if(Event.Type == sf::Event::KeyPressed){
 				if(Event.Key.Code == sf::Key::Space){
-					step(pfGrid, pfDim, guy);
+					step(pfGrid, guy);
 				}
 				else if(Event.Key.Code == 'r'){
-					resetGrid(pfGrid, pfDim, arrowImg);
+					resetGrid(App, pfGrid, arrowImg, guy);
 				}
 			}
         }
@@ -231,7 +242,7 @@ int main(int argc, char* argv[])
 		App.SetActive();
 		App.Clear(sf::Color(255,255,255,255));
 		
-		drawGrid(App, pfGrid, pfDim);
+		drawGrid(App, pfGrid);
 		
 		App.Draw(guy);
 		
